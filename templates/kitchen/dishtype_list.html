@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">📂 Dish Types</h2>
+    <a href="{% url 'kitchen:dishtype-create' %}" class="btn btn-success">+ Add Dish Type</a>
+  </div>
+
+  <table class="table table-striped table-bordered shadow-sm">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col" style="width: 180px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for dishtype in dishtype_list %}
+        <tr>
+          <td>
+            <a href="{% url 'kitchen:dishtype-detail' dishtype.pk %}" class="text-decoration-none fw-semibold">
+              {{ dishtype.name }}
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'kitchen:dishtype-update' dishtype.pk %}" class="btn btn-sm btn-warning me-1">✏️ Edit</a>
+            <a href="{% url 'kitchen:dishtype-delete' dishtype.pk %}" class="btn btn-sm btn-danger">🗑️ Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="2" class="text-center text-muted">No dish types found</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
