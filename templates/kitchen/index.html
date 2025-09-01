@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h1 class="text-center my-4">Welcome to Kitchen Service</h1>
+
+  <div class="my-4">
+    <h2 class="text-center" style="color: #5C3317;">Kitchen Service Overview</h2>
+    <p class="text-center" style="color: #5C3317;">
+      Manage your kitchen more effectively with our service, where you can track cooks, dishes, ingredients, and dish types.
+    </p>
+  </div>
+
+  <h2>Website Stats</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr style="font-weight: bold; color: #ff4500;">
+        <th>Stat</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Total Cooks</td><td>{{ num_cooks }}</td></tr>
+      <tr><td>Total Dishes</td><td>{{ num_dishes }}</td></tr>
+      <tr><td>Total Dish Types</td><td>{{ num_types }}</td></tr>
+      <tr><td>Total Ingredients</td><td>{{ num_ingredients }}</td></tr>
+      <tr><td>Total Visits</td><td>{{ num_visits }}</td></tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}
