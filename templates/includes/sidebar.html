@@ -1,0 +1,7 @@
+<div class="list-group shadow-sm">
+  <a href="{% url 'kitchen:index' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'index' %}active bg-warning text-dark{% endif %}">🏠 Home</a>
+  <a href="{% url 'kitchen:dish-list' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'dish-list' %}active bg-warning text-dark{% endif %}">🍲 Dishes</a>
+  <a href="{% url 'kitchen:cook-list' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'cook-list' %}active bg-warning text-dark{% endif %}">👨‍🍳 Cooks</a>
+  <a href="{% url 'kitchen:dishtype-list' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'dishtype-list' %}active bg-warning text-dark{% endif %}">📂 Dish Types</a>
+  <a href="{% url 'kitchen:ingredient-list' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'ingredient-list' %}active bg-warning text-dark{% endif %}">🥗 Ingredients</a>
+</div>
