@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Ingredients</h2>
+<form method="get" class="mb-3">
+  {{ search_form.as_p }}
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<a href="{% url 'kitchen:ingredient-create' %}" class="btn btn-success mb-3">+ Add Ingredient</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ing in ingredient_list %}
+      <tr>
+        <td>{{ ing.name }}</td>
+        <td>
+          <a href="{% url 'kitchen:ingredient-update' ing.pk %}" class="btn btn-sm btn-warning me-1">Edit</a>
+          <a href="{% url 'kitchen:ingredient-delete' ing.pk %}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="2">No ingredients</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
