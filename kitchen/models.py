@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
+from django.conf import settings
 
 
 class DishType(models.Model):
@@ -11,21 +12,6 @@ class DishType(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Cook(AbstractUser):
-    years_of_experience = models.IntegerField(default=0)
-
-    class Meta:
-        verbose_name = "cook"
-        verbose_name_plural = "cooks"
-
-    def __str__(self):
-        full_name = f"{self.first_name} {self.last_name}".strip()
-        return f"{self.username} ({full_name})" if full_name else self.username
-
-    def get_absolute_url(self):
-        return reverse("kitchen:cook-detail", kwargs={"pk": self.pk})
 
 
 class Ingredient(models.Model):
@@ -45,7 +31,7 @@ class Dish(models.Model):
     dish_type = models.ForeignKey(
         DishType, on_delete=models.CASCADE, related_name="dishes"
     )
-    cooks = models.ManyToManyField(Cook, related_name="dishes")
+    cooks = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="dishes")
     ingredients = models.ManyToManyField(Ingredient, related_name="dishes", blank=True)
 
     class Meta:
