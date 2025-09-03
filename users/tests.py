@@ -56,7 +56,6 @@ def test_cook_create_update_delete_views(client):
     client_user = Cook.objects.create_user(username="admin", password="test12345")
     client.login(username="admin", password="test12345")
 
-    # Create
     create_url = reverse("users:cook-create")
     response = client.post(
         create_url,
@@ -72,21 +71,18 @@ def test_cook_create_update_delete_views(client):
     assert response.status_code == 302
     cook = Cook.objects.get(username="new_cook")
 
-    # Update
     update_url = reverse("users:cook-update", args=[cook.id])
     response = client.post(update_url, data={"years_of_experience": 7})
     cook.refresh_from_db()
     assert response.status_code == 302
     assert cook.years_of_experience == 7
 
-    # Delete
     delete_url = reverse("users:cook-delete", args=[cook.id])
     response = client.post(delete_url)
     assert response.status_code == 302
     assert not Cook.objects.filter(id=cook.id).exists()
 
 
-# 🔎 Search test
 @pytest.mark.django_db
 def test_cook_list_view_with_search(client):
     cook1 = Cook.objects.create_user(username="chef5", password="test12345")

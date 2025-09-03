@@ -80,7 +80,6 @@ def test_dish_create_update_delete_views(client):
     client.login(username="chef", password="test12345")
     dish_type = DishType.objects.create(name="Soup")
 
-    # Create
     create_url = reverse("kitchen:dish-create")
     response = client.post(
         create_url,
@@ -89,7 +88,6 @@ def test_dish_create_update_delete_views(client):
     assert response.status_code == 302
     dish = Dish.objects.get(name="Borscht")
 
-    # Update
     update_url = reverse("kitchen:dish-update", args=[dish.id])
     response = client.post(
         update_url,
@@ -99,14 +97,12 @@ def test_dish_create_update_delete_views(client):
     assert response.status_code == 302
     assert dish.name == "Updated Borscht"
 
-    # Delete
     delete_url = reverse("kitchen:dish-delete", args=[dish.id])
     response = client.post(delete_url)
     assert response.status_code == 302
     assert not Dish.objects.filter(id=dish.id).exists()
 
 
-# 🔎 Search tests
 @pytest.mark.django_db
 def test_dish_list_view_with_search(client):
     cook = Cook.objects.create_user(username="chef", password="test12345")
