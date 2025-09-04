@@ -111,19 +111,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# --- AUTO CREATE TEST USER ---
-import django
-from django.contrib.auth import get_user_model
-
-django.setup()
-User = get_user_model()
-
-username = "test"
-password = "Test1234!"
-email = "test@example.com"
-
-if not User.objects.filter(username=username).exists():
-    User.objects.create_superuser(username=username, email=email, password=password)
-    print("✅ Test superuser created")
