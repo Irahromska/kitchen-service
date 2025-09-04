@@ -34,6 +34,20 @@
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
+    /* стилізація кнопки logout як лінку */
+    .logout-btn {
+      display: inline;
+      padding: 0;
+      margin: 0;
+      border: none;
+      background: none;
+      color: #fff;
+      text-decoration: none;
+    }
+    .logout-btn:hover {
+      color: #ffd700;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -41,19 +55,26 @@
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="{% url 'kitchen:index' %}">🍴 Kitchen Service</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarNav">
-  <ul class="navbar-nav ms-auto">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
         {% if user.is_authenticated %}
           <li class="nav-item d-flex align-items-center">
             <span class="navbar-text me-2">👋 Hi, <b>{{ user.username }}</b></span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Logout <i class="fas fa-sign-out-alt"></i></a>
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="nav-link logout-btn">
+                Logout <i class="fas fa-sign-out-alt"></i>
+              </button>
+            </form>
           </li>
         {% else %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login <i class="fas fa-sign-in-alt"></i></a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login <i class="fas fa-sign-in-alt"></i></a>
+          </li>
         {% endif %}
       </ul>
     </div>
