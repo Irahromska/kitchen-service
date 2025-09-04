@@ -15,7 +15,6 @@
     <h4>Name:</h4>
     <p class="fw-semibold">{{ dishtype.name }}</p>
 
-    {# Тут можна додати список всіх страв, які належать до цього типу #}
     {% if dishtype.dish_set.all %}
       <h5 class="mt-3">Dishes of this type:</h5>
       <ul>
