@@ -4,7 +4,7 @@ Kitchen Service is a web application for managing a restaurant kitchen. The goal
 
 Demo link: https://kitchen-service-efja.onrender.com
 
-Testable superuser:
+You can use following superuser:
 
 Username: testadmin
 Password: Admin1234!
